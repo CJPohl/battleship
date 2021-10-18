@@ -1,0 +1,7 @@
+- Art Assets
+- Different size ships
+- Ship class
+- Gameboard class
+- Player class
+- Gameloop class?
+- Dom

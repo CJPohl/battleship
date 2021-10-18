@@ -1,13 +1,15 @@
 export default class Ship {
-  construtor(length, location) {
+  constructor(length, mode, coordsArray) {
     this.length = length;
     this.sunk = false;
-    this.location = location;
+    this.mode = mode;
+    this.coords = coordsArray;
     this.hits = [];
   }
 
+  // method to iterate through coord array to check if hit
   hit() {
-    this.hits.push('');
+    this.hits.push('X');
     this.isSunk();
   }
 
