@@ -3,5 +3,8 @@ import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
 
+import 'lodash';
+
 import Ship from './ship';
 import Gameboard from './gameboard';
+import Player from './player';
