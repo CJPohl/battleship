@@ -8,3 +8,9 @@ import 'lodash';
 import Ship from './ship';
 import Gameboard from './gameboard';
 import Player from './player';
+import AI from './ai';
+import { elements } from './DOM';
+
+window.onload = () => {
+    elements.initPage();
+};

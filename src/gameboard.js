@@ -77,22 +77,3 @@ export default class Gameboard {
     }
   }
 }
-
-const gameboard = new Gameboard();
-gameboard.createShip(1, 4, 'v', { x: 4, y: 2 });
-gameboard.createShip(2, 5, 'h', { x: 1, y: 1 });
-console.log(gameboard.ships);
-gameboard.receiveAttack({ x: 1, y: 2 });
-gameboard.receiveAttack({ x: 1, y: 3 });
-gameboard.receiveAttack({ x: 1, y: 4 });
-gameboard.receiveAttack({ x: 1, y: 5 });
-gameboard.receiveAttack({ x: 1, y: 6 });
-gameboard.receiveAttack({ x: 5, y: 2 });
-gameboard.receiveAttack({ x: 6, y: 2 });
-gameboard.receiveAttack({ x: 7, y: 2 });
-gameboard.receiveAttack({ x: 8, y: 2 });
-console.log(gameboard.board);
-console.log(gameboard.ships[0].sunk);
-console.log(gameboard.ships[1].sunk);
-console.log(gameboard.ships);
-console.log(gameboard.allSunk);
