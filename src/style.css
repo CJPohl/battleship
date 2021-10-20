@@ -1,0 +1,114 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    background-color: #DCD9D4;
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%), radial-gradient(at 50% 0%, rgba(255,255,255,0.10) 0%, rgba(0,0,0,0.50) 50%);
+    background-blend-mode: soft-light,screen;
+}
+
+button {
+    width: 10rem;
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+button:hover {
+    background-color: #f0ece7;
+}
+
+.main-container {
+    position: absolute;
+    top: 5rem;
+    bottom: 5rem;
+    left: 5rem;
+    right: 5rem;
+    display: grid;
+    grid-template-columns: 5fr 1fr 5fr;
+    grid-template-rows: 1fr 5fr 1fr;
+    padding: 5rem
+}
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 5rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.title {
+    justify-self: center;
+}
+
+.new-game {
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+
+.player-b {
+    grid-column: 1;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+
+.ai-b {
+    grid-column: 3;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+
+.grid {
+    border: 1px solid blue;
+}
+
+.spacer {
+    border-top: 1px solid black;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 8rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    gap: 1rem;
+}
+
+.fa-github {
+    color: blue;
+}
+
+.fa-github:hover {
+    transform: scale(1.2);
+}

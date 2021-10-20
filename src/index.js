@@ -5,6 +5,8 @@ import '@fortawesome/fontawesome-free/js/brands';
 
 import 'lodash';
 
+import './style.css';
+
 import Ship from './ship';
 import Gameboard from './gameboard';
 import Player from './player';
