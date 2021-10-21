@@ -31,6 +31,17 @@ button {
     cursor: pointer;
 }
 
+input {
+    background: none;
+    border: 1px solid black;
+    border-radius: 1rem;
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: 1rem;
+    width: 100%;
+    padding: 1rem;
+}
+
 button:hover {
     background-color: #f0ece7;
 }
@@ -72,6 +83,29 @@ button:hover {
     gap: .5rem;
 }
 
+.intro-img {
+    height: 40rem;
+    width: 40rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-container {
+    height: 40rem;
+    width: 40rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    gap: 2rem;
+
+}
+
+.begin {
+    margin: 0 auto;
+}
+
 .game-container {
     width: 40rem;
     height: 40rem;
@@ -101,8 +135,8 @@ button:hover {
 }
 
 .grid-container {
-    width: 40rem;
-    height: 40rem;
+    width: 41rem;
+    height: 41rem;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
@@ -112,6 +146,11 @@ button:hover {
 
 .grid {
     border: .01px solid rgba(0, 0, 0, 0.384);
+    cursor: pointer;
+}
+
+.grid.active {
+    cursor: initial;
 }
 
 #grid-00 {
@@ -132,6 +171,12 @@ button:hover {
 
 .grid:hover {
     background-color: #505cda;
+}
+
+.board-description {
+    position: absolute;
+    margin-left: 18rem;
+    margin-top: 42rem;
 }
 
 .spacer {

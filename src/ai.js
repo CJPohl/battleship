@@ -13,11 +13,11 @@ export default class AI {
     const third = this.generateH();
     const forth = this.generateV();
     const fifth = this.generateH();
-    this.aiBoard.createShip(1, 2, 'h', first);
-    this.aiBoard.createShip(2, 3, 'v', second);
-    this.aiBoard.createShip(3, 3, 'h', third);
-    this.aiBoard.createShip(4, 4, 'v', forth);
-    this.aiBoard.createShip(5, 5, 'h', fifth);
+    this.aiBoard.createShip(2, 'h', first);
+    this.aiBoard.createShip(3, 'v', second);
+    this.aiBoard.createShip(3, 'h', third);
+    this.aiBoard.createShip(4, 'v', forth);
+    this.aiBoard.createShip(5, 'h', fifth);
   }
 
   // generate coords for horizontally placed ships
@@ -41,6 +41,7 @@ export default class AI {
     const first = _.random([0], [9]);
     const second = _.random([0], [9]);
     const coords = { x: first, y: second };
+    
     return coords;
   }
 
@@ -50,8 +51,9 @@ export default class AI {
     if (this.shots.some((shot) => _.isEqual(shot, coords))) {
       this.shoot();
     } else {
-      this.receiveAttack(coords);
       this.shots.push(coords);
+      
+      return coords;
     }
   }
 }

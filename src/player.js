@@ -8,22 +8,25 @@ export default class Player {
   }
 
   // prompt for player to enter coords to create ships on gameboard
-  generateShips() {
-    this.playerBoard.createShip(1, 2);
-    this.playerBoard.createShip(2, 3);
-    this.playerBoard.createShip(3, 3);
-    this.playerBoard.createShip(4, 4);
-    this.playerBoard.createShip(5, 5);
+  generateShips(mode, coords) {
+    this.playerBoard.createShip(2, mode[0], coords[0]);
+    this.playerBoard.createShip(3, mode[1], coords[1]);
+    this.playerBoard.createShip(3, mode[2], coords[2]);
+    this.playerBoard.createShip(4, mode[3], coords[3]);
+    this.playerBoard.createShip(5, mode[4], coords[4]);
   }
 
   // prompt for player to enter coords to attack AI board
   shoot(coords) {
     if (this.shots.some((shot) => _.isEqual(shot, coords))) {
-      // warn the player you've shot here already
+      console.log('YOU SHOT HERE ALREAddysdf');
+      
+      return false;
     }
     else {
-      this.aiBoard.receiveAttack(coords);
       this.shots.push(coords);
+
+      return true;
     }
   }
 }
