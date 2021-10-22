@@ -4,19 +4,20 @@ export default class AI {
   constructor() {
     this.aiBoard = new Gameboard();
     this.shots = [];
+    this.shipLocations = [];
   }
 
   // automatically create AI ships
   generateShips() {
     const first = this.generateH();
-    const second = this.generateV();
-    const third = this.generateH();
-    const forth = this.generateV();
-    const fifth = this.generateH();
     this.aiBoard.createShip(2, 'h', first);
+    const second = this.generateV();
     this.aiBoard.createShip(3, 'v', second);
+    const third = this.generateH();
     this.aiBoard.createShip(3, 'h', third);
+    const forth = this.generateV();
     this.aiBoard.createShip(4, 'v', forth);
+    const fifth = this.generateH();
     this.aiBoard.createShip(5, 'h', fifth);
   }
 
@@ -30,10 +31,12 @@ export default class AI {
 
   // generate coords for vertically placed ships
   generateV() {
-    const first = _.random([0], [4]);
-    const second = _.random([0], [9]);
-    const coords = { x: first, y: second };
+    let first = _.random([0], [4]);
+    let second = _.random([0], [9]);
+    let coords = { x: first, y: second };
+    
     return coords;
+    
   }
 
   // generate coords for shots
@@ -41,19 +44,20 @@ export default class AI {
     const first = _.random([0], [9]);
     const second = _.random([0], [9]);
     const coords = { x: first, y: second };
-    
     return coords;
   }
 
   // if generated coords are already in array, using recursion, call the same function again until coords aren't in array
   shoot() {
-    const coords = this.generateCoords();
-    if (this.shots.some((shot) => _.isEqual(shot, coords))) {
-      this.shoot();
-    } else {
-      this.shots.push(coords);
-      
-      return coords;
+    let coords;
+    while (true) {
+      coords = this.generateCoords();
+      if (this.shots.some((shot) => _.isEqual(shot, coords))) {
+        coords = this.generateCoords();
+      } else {
+        this.shots.push(coords);
+        return coords;
+      }
     }
   }
 }

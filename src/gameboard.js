@@ -18,13 +18,12 @@ export default class Gameboard {
 
   // creates a ship with the following parameters, appends it to the gameboard ship array, and places it in a specific location
   createShip(length, mode, coords) {
-    this.board[coords.x][coords.y] = '<';
-
     const itX = coords.x + 1;
     const itY = coords.y + 1;
 
     if (mode === 'h') {
-      this.board[coords.x][coords.y + length + 1] = '>';
+      this.board[coords.x][coords.y] = 'ht';
+      this.board[coords.x][coords.y + length + 1] = 'hb';
       const coordsArray = [];
       for (let i = 0; i < length; i++) {
         this.board[coords.x][itY + i] = '-';
@@ -35,7 +34,8 @@ export default class Gameboard {
     }
 
     if (mode === 'v') {
-      this.board[coords.x + length + 1][coords.y] = '>';
+      this.board[coords.x][coords.y] = 'vt';
+      this.board[coords.x + length + 1][coords.y] = 'vb';
       const coordsArray = [];
       for (let i = 0; i < length; i++) {
         this.board[itX + i][coords.y] = '-';

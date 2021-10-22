@@ -1,4 +1,13 @@
-import water from './images/water-tile.png';
+import sampleBoard from './images/sample-board.PNG';
+import waterTile from './images/water-tile.png';
+import waterTileMiss from './images/water-tile-miss.png';
+import waterTitleHit from './images/water-tile-hit.png';
+import shipCenterBlank from './images/ship-center-blank.png';
+import shipCenterHit from './images/ship-center-hit.png';
+import shipLeft from './images/ship-left.png';
+import shipTop from './images/ship-top.png';
+import shipRight from './images/ship-right.png';
+import shipBottom from './images/ship-bottom.png';
 
 const elements = (() => {
   const mainContainer = document.createElement('div');
@@ -20,9 +29,20 @@ const elements = (() => {
   // render the intro img when page is loaded
   function createIntro() {
     const introImg = document.createElement('img');
-    introImg.src = water;
+    introImg.src = sampleBoard;
     introImg.classList.add('intro-img');
-    mainContainer.appendChild(introImg);
+
+    const introContainer = document.createElement('div');
+    introContainer.classList.add('intro-container');
+    introContainer.innerHTML = `
+      <div class="img-title-container">
+        <h1 class="img-title">BATTLESHIP</h1>
+        <p class="img-subtitle">Press <button class="new-game">New Game  <i class="fa fa-plus"></i></button> to Begin</p>
+      </div>
+    `;
+    introContainer.appendChild(introImg);
+    
+    mainContainer.appendChild(introContainer);
   }
 
   // prompts user for user name when new game is selected
@@ -30,7 +50,7 @@ const elements = (() => {
     const inputContainer = document.createElement('div');
     inputContainer.classList.add('input-container');
     inputContainer.innerHTML = `
-      <input class="name-input" placeholder="Name">
+      <input type="text" class="name-input" placeholder="Name">
       <button class="begin">Begin</button>
     `;
     mainContainer.appendChild(inputContainer);
@@ -42,10 +62,31 @@ const elements = (() => {
       return name;
   }
 
+  // adding the vh switch that allows players to choose v or h for placement
+  function addVHSwitch() {
+    const vhContainer = document.createElement('div');
+    vhContainer.classList.add('vh-container');
+    vhContainer.innerHTML = `
+      <label for="h">H</label>
+      <input type="radio" id="h" name="hv" value="h" checked>
+      <label for"v">V</label>
+      <input type="radio" id="v" name="hv" value="v">
+      <div class="sizes">Sizes:
+        <p class="size">2</p>
+        <p class="size">3</p>
+        <p class="size">3</p>
+        <p class="size">4</p>
+        <p class="size">5</p>
+      </div>
+    `;
+
+    mainContainer.appendChild(vhContainer);
+  }
+
   function renderGridImages() {
     const grids = document.querySelectorAll('.grid');
     grids.forEach((grid) => {
-      grid.src = water;
+      grid.src = waterTile;
     });
   }
 
@@ -58,8 +99,29 @@ const elements = (() => {
     // attach src to each grid based upon conditions
     const grids = selectPlayerGrids();
     for (let i = 0; i < 100; i++) {
-      if (playerBoard[i] === null) {
-        grids[i].src = water;
+      if (playerBoard[i] === 'ht') {
+        grids[i].src = shipLeft;
+      }
+      else if (playerBoard[i] === 'vt') {
+        grids[i].src = shipTop;
+      }
+      else if (playerBoard[i] === 'hb') {
+        grids[i].src = shipRight;
+      }
+      else if (playerBoard[i] === 'vb') {
+        grids[i].src = shipBottom;
+      }
+      else if (playerBoard[i] === '') {
+        grids[i].src = waterTileMiss;
+      }
+      else if (playerBoard[i] === '-') {
+        grids[i].src = shipCenterBlank;
+      }
+      else if (playerBoard[i] === 'X') {
+        grids[i].src = shipCenterHit;
+      }
+      else {
+        grids[i].src = waterTile;
       }
     }
   }
@@ -72,8 +134,14 @@ const elements = (() => {
     // attach src to each grid based upon conditions
     const grids = selectAIGrids();
     for (let i = 0; i < 100; i++) {
-      if (aiBoard[i] === null) {
-        grids[i].src = water;
+      if (aiBoard[i] === '') {
+        grids[i].src = waterTileMiss;
+      }
+      else if (aiBoard[i] === 'X') {
+        grids[i].src = waterTitleHit;
+      }
+      else {
+        grids[i].src = waterTile;
       }
     }
   }
@@ -109,9 +177,13 @@ const elements = (() => {
     header.classList.add('header');
     header.innerHTML = `
         <h1 class="title">Battleship</h1>
-        <button class="new-game">New Game<i class="fa fa-plus"></i></button>
+        <button class="refresh">Refresh Page<i class="fas fa-redo"></i></button>
     `;
     document.body.appendChild(header);
+  }
+
+  function reloadPage() {
+    window.location.reload();
   }
 
   function createSpacer() {
@@ -220,6 +292,24 @@ const elements = (() => {
     return locationObject;
   }
 
+  function renderGameOver(winner) {
+    const introImg = document.createElement('img');
+    introImg.src = sampleBoard;
+    introImg.classList.add('intro-img');
+
+    const winnerContainer = document.createElement('div');
+    winnerContainer.classList.add('winner-container');
+    winnerContainer.innerHTML = `
+      <div class="img-title-container">
+        <h1 class="img-title">${winner} Wins!</h1>
+        <p class="img-subtitle">Press "Refresh Page" to Play Again</p>
+      </div>
+    `;
+    winnerContainer.appendChild(introImg);
+
+    mainContainer.appendChild(winnerContainer);
+  }
+
   function createFooter() {
     const footer = document.createElement('div');
     footer.classList.add('footer');
@@ -232,15 +322,18 @@ const elements = (() => {
   return {
     initPage,
     clearMainContainer,
+    reloadPage,
     takeName,
     returnName,
     generateBoard,
+    addVHSwitch,
     renderGridImages,
     selectPlayerGrids,
     selectAIGrids,
     createLocationObject,
     renderPlayerImages,
     renderAIImages,
+    renderGameOver,
   };
 })();
 

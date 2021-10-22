@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&display=swap');
 
 *,
 *::before,
@@ -16,7 +16,7 @@ body {
     background-color: #DCD9D4;
     background-image: linear-gradient(to bottom, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%), radial-gradient(at 50% 0%, rgba(255,255,255,0.10) 0%, rgba(0,0,0,0.50) 50%);
     background-blend-mode: soft-light,screen;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Inconsolata", sans-serif;
     font-weight: bold;
 }
 
@@ -28,16 +28,20 @@ button {
     padding: 1rem;
     font-family: inherit;
     font-weight: inherit;
+    font-size: 1.2rem;
     cursor: pointer;
 }
 
 input {
     background: none;
-    border: 1px solid black;
-    border-radius: 1rem;
     font-family: inherit;
     font-weight: inherit;
-    font-size: 1rem;
+    font-size: 1.2rem;
+}
+
+input[type="text"] {
+    border: 1px solid black;
+    border-radius: 1rem;
     width: 100%;
     padding: 1rem;
 }
@@ -73,9 +77,10 @@ button:hover {
 
 .title {
     justify-self: center;
+    font-size: 3rem;
 }
 
-.new-game {
+.refresh {
     justify-self: center;
     display: flex;
     justify-content: center;
@@ -83,12 +88,43 @@ button:hover {
     gap: .5rem;
 }
 
-.intro-img {
+.new-game {
+    border-color: white;
+    color: white;
+    
+}
+
+.intro-container {
     height: 40rem;
     width: 40rem;
+    border-radius: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 10px 5px 15px 10px rgba(0, 0, 0, 0.137);
+}
+
+.intro-img {
+    position: absolute;
+    border-radius: 1rem;
+    height: 40rem;
+    width: 40rem;
+    z-index: -1;
+}
+
+.img-title-container {
+    position: absolute;
+    height: 12rem;
+    width: 35rem;
+    border-radius: 1rem;
+    background-color: rgba(0, 0, 0, 0.712);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: white;
+    z-index: 0;
 }
 
 .input-container {
@@ -99,11 +135,40 @@ button:hover {
     justify-content: center;
     align-self: center;
     gap: 2rem;
-
 }
 
 .begin {
     margin: 0 auto;
+}
+
+.vh-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 5rem;
+}
+
+.vh-container input {
+    border: none;
+    width: 100%;
+    height: 2rem;
+}
+
+.sizes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.size.active {
+    border-radius: 1rem;
+    background-color: #2a35b141;
+    font-size: 3rem;
 }
 
 .game-container {
@@ -151,6 +216,7 @@ button:hover {
 
 .grid.active {
     cursor: initial;
+    opacity: 50%;
 }
 
 #grid-00 {
@@ -175,8 +241,9 @@ button:hover {
 
 .board-description {
     position: absolute;
-    margin-left: 18rem;
+    margin-left: 16rem;
     margin-top: 42rem;
+    font-size: 1.2rem;
 }
 
 .spacer {
@@ -186,6 +253,21 @@ button:hover {
     left: 0;
     width: 100%;
     margin-bottom: 3rem;
+}
+
+.winner-container {
+    position: absolute;
+    height: 10rem;
+    width: 30rem;
+    border-radius: 1rem;
+    background-color: rgba(0, 0, 0, 0.712);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: white;
+    z-index: 0;
 }
 
 .footer {

@@ -19,7 +19,6 @@ export default class Player {
   // prompt for player to enter coords to attack AI board
   shoot(coords) {
     if (this.shots.some((shot) => _.isEqual(shot, coords))) {
-      console.log('YOU SHOT HERE ALREAddysdf');
       
       return false;
     }
